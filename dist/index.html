@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A source-checked index of UT Austin alumni and former students who founded valuable companies or raised venture capital." />
+    <title>The Longhorn founder index</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fff'/%3E%3Cpath d='M7 9h5v10c0 3 1.7 5 4 5s4-2 4-5V9h5v10c0 6-3.7 10-9 10S7 25 7 19V9Z' fill='%23222'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./data.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#index">Skip to the index</a>
+    <div class="page" id="top">
+      <header class="header">
+        <h1>The Longhorn founder index</h1>
+        <nav aria-label="Page navigation">
+          <a href="#index">Index</a>
+          <a href="#yc">YC</a>
+          <a href="#audit">Audit</a>
+          <a href="#method">Method</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="intro-heading">
+          <h2 id="intro-heading" class="sr-only">About the index</h2>
+          <p>A public-source census of UT Austin alumni and former students who founded companies, raised venture capital, or produced a disclosed exit.</p>
+          <p class="updated" id="summary-line">Research in progress.</p>
+          <p class="scope-note">Company records are counted once, even when several UT founders share the same outcome. Funding is never treated as valuation.</p>
+        </section>
+
+        <section class="controls" aria-label="Filter the founder index">
+          <label class="search-label" for="search">Search</label>
+          <input id="search" type="search" placeholder="Founder, company, sector, or metric" autocomplete="off" />
+          <div class="filter-row" id="metric-filters" aria-label="Filter by value evidence">
+            <button type="button" class="filter active" data-metric="all" aria-pressed="true">All</button>
+            <button type="button" class="filter" data-metric="market-cap" aria-pressed="false">Market cap</button>
+            <button type="button" class="filter" data-metric="transaction" aria-pressed="false">Transactions</button>
+            <button type="button" class="filter" data-metric="valuation" aria-pressed="false">Private valuations</button>
+          </div>
+        </section>
+
+        <section id="index" aria-labelledby="index-heading">
+          <div class="section-heading">
+            <h2 id="index-heading">Ranked evidence</h2>
+            <p id="result-count" aria-live="polite"></p>
+          </div>
+          <div id="founder-list" class="founder-list"></div>
+          <p class="empty" id="empty-state" hidden>No records match those filters.</p>
+        </section>
+
+        <section class="supplement" id="funding" aria-labelledby="funding-heading">
+          <div class="section-heading">
+            <h2 id="funding-heading">Funding disclosed, value unknown</h2>
+            <p id="funding-count"></p>
+          </div>
+          <p class="section-intro">These founders clearly raised institutional capital, but no defensible public company valuation was located. They are ordered by disclosed funding and kept outside the worth ranking.</p>
+          <div id="funding-list" class="compact-list"></div>
+        </section>
+
+        <section class="supplement" id="wealth" aria-labelledby="wealth-heading">
+          <div class="section-heading">
+            <h2 id="wealth-heading">Private-company scale proxies</h2>
+            <p>4 records</p>
+          </div>
+          <p class="section-intro">For these private companies, only founder-wealth estimates were public. Wealth is not company value, so these records are deliberately unranked.</p>
+          <div id="wealth-list" class="compact-list"></div>
+        </section>
+
+        <section class="supplement yc-section" id="yc" aria-labelledby="yc-heading">
+          <div class="section-heading">
+            <h2 id="yc-heading">Y Combinator × UT Austin</h2>
+            <p id="yc-count"></p>
+          </div>
+          <p class="section-intro">Every confirmed public YC record located in the audit, from Summer 2009 through Summer 2026. Exact batch and YC’s current status are preserved. No confirmed company had a defensible public valuation, so this is a cohort ledger—not a ranking.</p>
+          <label class="search-label" for="yc-search">Search YC companies</label>
+          <input id="yc-search" type="search" placeholder="Company, founder, batch, or status" autocomplete="off" />
+          <div id="yc-list" class="yc-list"></div>
+          <p class="empty" id="yc-empty" hidden>No YC records match that search.</p>
+        </section>
+
+        <section class="supplement" id="unpriced" aria-labelledby="unpriced-heading">
+          <div class="section-heading">
+            <h2 id="unpriced-heading">Verified, not rankable</h2>
+            <p>3 records</p>
+          </div>
+          <p class="section-intro">Founder relationships are supported, but no comparable value was public—or the record belongs in a separate faculty-spinoff lane.</p>
+          <div id="unpriced-list" class="compact-list"></div>
+        </section>
+
+        <section class="supplement audit" id="audit" aria-labelledby="audit-heading">
+          <div class="section-heading">
+            <h2 id="audit-heading">Audit ledger</h2>
+            <p id="audit-count"></p>
+          </div>
+          <p class="section-intro">Common false positives are retained here so the same Austin-location, UT-affiliation, executive-versus-founder, and name-collision errors do not creep back into the census.</p>
+          <details>
+            <summary>Open exclusions and corrections</summary>
+            <div id="exclusion-list" class="audit-list"></div>
+          </details>
+          <details>
+            <summary>Open borderline YC affiliations</summary>
+            <div id="yc-borderline-list" class="audit-list"></div>
+          </details>
+        </section>
+
+        <section class="method" id="method" aria-labelledby="method-heading">
+          <h2 id="method-heading">How the ranking works</h2>
+          <p>The default order uses the strongest dated public company-value signal available: current market capitalization, announced transaction value, then a last disclosed or clearly derived private valuation. These measures are visibly labeled because they are not economically identical.</p>
+          <p>Bounded ranges are sorted by their midpoint; “greater than” values sort just above the stated floor; exact ties share a rank and are alphabetized. The visible label—not the internal sort key—is the reported economic claim.</p>
+          <p>A record enters the ranked index only after the founder’s UT relationship, founder role, and value or funding figure are each supported by public evidence. Austin location alone does not count. Funding is never presented as valuation.</p>
+          <p>Values change. Public-company figures use the latest trading-day data available during the September 2026 review; private valuations and acquisitions retain their original announcement dates.</p>
+          <p>“Every founder” is not a mathematically provable claim: private companies can hide both funding and founder biographies, and no authoritative university-wide founder registry exists. This site is therefore a reproducible, public-source census. It favors false-negative omissions over weakly sourced inclusion.</p>
+          <a href="#top">Back to top</a>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
