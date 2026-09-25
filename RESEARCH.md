@@ -16,6 +16,8 @@ The index is intentionally more conservative than an alumni-company database. A 
 
 “Triple checked” therefore means the three claim classes above were independently tested; it does not mean every record happens to have exactly three hyperlinks. When possible, the index uses an official UT source for education, a company or regulatory source for founder/deal facts, and a dated financial source for the number.
 
+At the September 24, 2026 review snapshot, the published site contains 106 value-ranked companies, 189 funding-only companies, 4 separate founder-wealth proxies, 25 unpriced or unresolved records, 135 explicit exclusions, and 69 confirmed YC companies. The ranked, funding, and proxy lanes represent 323 distinct named founders after company-level deduplication.
+
 ## An honest completeness claim
 
 The project cannot mathematically prove that it contains *every* UT Austin entrepreneur. Private companies can operate without disclosing financing, old companies may have thin digital records, founder biographies are sometimes contradictory, and commercial databases routinely conflate UT Austin with other institutions in the University of Texas System. Commercial alumni and venture databases contain thousands of possible leads, but those entries are neither a complete census nor uniformly verified.
@@ -60,7 +62,7 @@ The ranking is numerical, but the numbers are not interchangeable. Every value i
 | **Founder wealth** | Dated third-party estimate of an individual’s net worth | Separate proxy used only when company value is not independently available; not a company valuation |
 | **Disclosed funding** | Capital raised from investors or lenders | Separate funding-only lane; funding is never equated with valuation |
 
-Numbers from different metric classes may appear in one descending index for discovery, but the label remains attached and the interface provides metric filters. Values are nominal and are not adjusted for inflation. Historical sale prices are not “updated” to the present. A current market cap is a point-in-time snapshot and will drift after the review date.
+Numbers from different metric classes may appear in one descending index for discovery, but the label remains attached and the interface provides metric filters. Values are nominal and are not adjusted for inflation. Non-USD claims retain their reported currency; a clearly labeled approximate dollar conversion may be used only as the internal sort key. Historical sale prices are not “updated” to the present. A current market cap is a point-in-time snapshot and will drift after the review date.
 
 ## Source hierarchy
 
@@ -73,6 +75,14 @@ Sources were weighted in this order:
 5. commercial private-market databases, used only with a visible provider/date label and never to override stronger primary evidence.
 
 Search snippets and database fields were treated as leads, not proof. When sources disagreed, the index either used the narrower claim, disclosed the range, or withheld the record.
+
+## Supplied Series A+ dataset cross-check
+
+The September 2026 expansion pass tested a user-supplied CSV containing 470 rows, 460 unique people, and 419 unique company labels. It was treated as a lead list, not as evidence. Only 16 company labels and 15 founder names matched the then-published index exactly, so every apparent miss was re-run through the same three-claim test rather than bulk imported.
+
+The file was especially useful for surfacing Jack Sharkey and Whop, but its rows also demonstrated why title-string matching is unsafe. Examples included an assistant to a founder labeled as the founder of MP Materials, a founder of an internal employee group labeled as a founder of Citi, a marketplace seller labeled as a founder of Poshmark, and plainly corrupted Apple and BP rows. Funding fields also mixed venture equity with debt facilities, IPO proceeds, royalty transactions, fund AUM, project-development commitments, and acquisition prices.
+
+For accepted records, the published amount is therefore often different from the CSV amount. A company was promoted only after independent evidence established UT Austin student attendance, actual founder or co-founder status, and a correctly classified economic event. Rejected and unresolved high-risk rows are preserved in the website audit ledger and the provenance notes so future refreshes do not reintroduce them.
 
 ## YC batch audit
 

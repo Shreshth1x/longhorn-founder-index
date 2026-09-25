@@ -120,6 +120,7 @@
     <p class="description">${escapeHtml(record.note)}</p>
     <div class="sources">${sourceLinks(record.sources)}</div>
   </article>`).join("");
+  document.querySelector("#unpriced-count").textContent = `${unpriced.length} records`;
 
   const ycSearch = document.querySelector("#yc-search");
   const ycList = document.querySelector("#yc-list");
@@ -147,7 +148,10 @@
   }
 
   document.querySelector("#audit-count").textContent = `${exclusions.length} exclusions · ${ycBorderline.length} YC borderlines`;
-  document.querySelector("#exclusion-list").innerHTML = exclusions.map(item => `<div class="audit-row"><strong>${escapeHtml(item.name)}</strong><span>${escapeHtml(item.reason)}</span></div>`).join("");
+  document.querySelector("#exclusion-list").innerHTML = exclusions.map(item => `<div class="audit-row">
+    <strong>${escapeHtml(item.name)}</strong>
+    <div><span>${escapeHtml(item.reason)}</span>${item.sources?.length ? `<div class="sources">${sourceLinks(item.sources)}</div>` : ""}</div>
+  </div>`).join("");
   document.querySelector("#yc-borderline-list").innerHTML = ycBorderline.map(item => `<div class="audit-row"><strong>${escapeHtml(item.company)} · ${escapeHtml(item.batch)}</strong><span>${escapeHtml(item.reason)}</span></div>`).join("");
 
   filters.forEach(button => {

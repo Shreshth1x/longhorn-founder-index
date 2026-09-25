@@ -3,7 +3,62 @@
 **Evidence reviewed through:** September 24, 2026  
 **Purpose:** supplemental claim notes, expansion candidates, and exclusion controls
 
-This ledger expands the evidence for selected company records; it is not an exhaustive duplicate of every source link embedded in the published dataset, especially the 65-company YC ledger. “Verified” means the available sources support the UT relationship, founder relationship, and displayed economic metric. “Funding only” means founder and UT status are supported but no defensible company value was found. “Special lane” means the record is informative but not directly comparable with the alumni company-value ranking. The published dataset remains the controlling list; this ledger also preserves expansion candidates and representative exclusions.
+This ledger expands the evidence for selected company records; it is not an exhaustive duplicate of every source link embedded in the published dataset, especially the public YC ledger. “Verified” means the available sources support the UT relationship, founder relationship, and displayed economic metric. “Funding only” means founder and UT status are supported but no defensible company value was found. “Special lane” means the record is informative but not directly comparable with the alumni company-value ranking. The published dataset remains the controlling list; this ledger also preserves expansion candidates and representative exclusions.
+
+## September 2026 supplied-dataset expansion
+
+The supplied Series A+ file contained 470 rows, 460 unique people, 419 unique company labels, and nine duplicate person-company pairs. It was used only for discovery. Before this pass, 16 company labels and 15 founder names matched the published dataset exactly. Every other row was independently classified as verified, rejected, or unresolved; no education field, founder-title string, funding total, or YC claim was copied without an external source.
+
+### Whop — Jack Sharkey
+
+- **Status:** Verified · private financing valuation; not YC.
+- **Why it was previously absent:** the earlier source universe emphasized official UT lists, disclosed exits and valuations, and the public YC directory. Whop was not in those seed lists, and no authoritative university-wide founder registry exists. The supplied file surfaced the company, but its Jack Sharkey row still required independent proof.
+- **UT/founder evidence:** [Business Insider’s 2023 financing profile](https://www.businessinsider.com/read-notion-pitch-ecommerce-startup-whop-used-17-million-raise-2023-7) identifies Sharkey as a co-founder who left UT to build Whop; [his public profile](https://www.linkedin.com/in/sharkeyjack) records the UT computer-science period.
+- **Value evidence:** [Whop’s financing announcement](https://whop.com/blog/watch/just-getting-started/) and [Tether’s investment announcement](https://tether.io/news/tether-invests-in-whop-one-of-the-fastest-growing-internet-markets-to-power-stablecoin-payments-for-the-next-generation-of-the-internet-economy/) support the $200 million round and $1.6 billion valuation.
+- **Correction:** Zachary Picon is not a Whop founder. Public biographies identify him as a Crewfare co-founder and University of Miami alumnus; the duplicate CSV row copied Whop, UT, and Sharkey details onto the wrong person.
+
+### High-confidence value-bearing additions
+
+The expansion added independently sourced records including Reata Pharmaceuticals, Glean, Solaris Energy Infrastructure, Lightmatter, ThoughtSpot, Hippocratic AI, Helios Towers, Function Health, PhysicsX, Rula, Recursion, Acorns, Rain, Rhoda AI, METiS TechBio, Yugabyte, Merama, Poshmark, Veza, SevenRooms, Pantheon, CommerceIQ, Zenoti, Zwift, Nominal, Lovevery, AutoFi, Blinkit, Opto Investments, Reonomy, Diligent Robotics, and Whop. Each company card in `dist/data.js` contains the claim-level sources and the precise metric label.
+
+Several values were materially reclassified:
+
+- Reata is represented by Biogen’s $7.3 billion acquisition, not a financing total.
+- SevenRooms is represented by DoorDash’s approximately $1.2 billion cash acquisition, not the CSV’s $98 million funding field.
+- Blinkit is represented by the INR 44.48 billion acquisition consideration disclosed by Zomato, not the CSV’s $1.04 billion figure.
+- Diligent Robotics is represented by Serve Robotics’ approximately $29 million acquisition consideration; the supplied funding number was not defensible.
+- Hillstone Networks is labeled with IPO proceeds, not VC funding or company value.
+- Good Glamm / MyGlamm retains its historical 2021 peak valuation and visibly discloses the group’s 2025 breakup rather than presenting the mark as current.
+
+### Funding-only additions
+
+The pass also added companies for which founder and UT status were verified but no defensible public company value was found. These include Element Biosciences, Medable, Refuel, Formation Bio, Flare Therapeutics, Nexu, TXSE, Trusting Social, Nuvig Therapeutics, Foxtrot, Bear Robotics, GentiBio, Homebase, SnowPlus, Cora, TiNDLE Foods, Aplazo, Spotnana, Shiftsmart, Venus Aerospace, Simon AI, Sonatus, Satellite Bio, Merlyn Mind, Alpine Bio, HighPoint Midstream, M2X Energy, Amber Electric, and Hillstone Networks. Debt, credit facilities, IPO proceeds, and private-equity continuation capital are explicitly labeled rather than collapsed into “VC raised.”
+
+### Final sub-$10 million tail audit
+
+After deduplicating M87 and Kaspar& and removing companies already represented under an alias, the file’s remaining sub-$10 million tail contained 86 distinct companies. All 86 received a separate founder-role, UT-attendance, economic-event, and exact-company YC check. The result was 8 value-event records, 48 funding-only records, 12 unpriced or unresolved records, and 18 exclusions. Flo / Flo Recruit was the only exact YC match, in Summer 2019; similarly named YC companies called Second and Butter are unrelated entities.
+
+This tail produced especially important corrections. Receptiviti’s filings show $647,401 sold, not $1.647 million. Everscore’s later $6 million Form D was an offering with zero sold, leaving only $150,000 of disclosed proceeds. Simply Business belongs in the value ranking at the approximately $490 million enterprise value reported by Travelers, while BlackBoxStocks is represented by the exact $83.098 million legacy-company merger consideration rather than the CSV’s funding field. Every accepted record and every rejected or unresolved row is preserved in the published dataset with its claim-level sources.
+
+### Representative supplied-file rejections
+
+| CSV candidate | Audit result |
+|---|---|
+| Apple / “Dr.Alvino rock” | Corrupted identity and nonsensical education data; no Apple founder relationship |
+| BP / Faiza Hassan | Employee-profile contamination; no BP founder relationship |
+| Citi / Amy Gatlin McCoy | Founded an internal employee group, not Citi |
+| MP Materials / Sarah Crawford | Assistant to the founder, not a founder |
+| Reddit / Basil Anderson | Executive assistant to Reddit’s founder, not a founder |
+| General Mills / Kimberly Fransham | Co-founded an internal venture studio, not General Mills |
+| Compass / Lauren Faust Kott | Co-founded a real-estate team and worked as a Compass agent, not a Compass founder |
+| Poshmark / Jane W. | Marketplace seller with a named closet, not a Poshmark company founder |
+| Patreon / Joan Conger | No Patreon founder relationship; organization-name collision |
+| Arrive Logistics / Manish Patel | Company history identifies an original investor, while Matt Pyatt and Eric Dunigan are the founders |
+| Gage Zero / Zeina El-Azzi | Real founder and UT alumna, but $300 million describes planned project deployment, not company capital raised or value |
+| PowerFin / Tuan Pham | $100 million project-development commitment, not company funding or valuation |
+| Marble Capital, Escalate Capital, BuildGroup | Fund size, cumulative investment, or permanent capital—not an operating-company value |
+
+Two higher-value rows remain deliberately unresolved: HiddenLayer’s founder has a UT continuing-education certificate rather than clearly established degree-program enrollment, and Xiu.com’s founder/funding evidence could not be paired with independent proof of the claimed UT M.B.A. These stay in the audit ledger rather than the founder index.
 
 ## Selected value-bearing records and expansion candidates
 
@@ -379,7 +434,7 @@ These names were checked and excluded from the UT Austin alumni-founder index fo
 
 ## Quarantined leads
 
-The following leads appeared plausible but were not promoted because the current evidence packet did not support all three required claim classes. They should be re-researched from primary sources before any inclusion: Helper Bees / Char Hu; Osano / Arlo Gilbert; Earthly Labs / Amy George; Spredfast / Ken Cho; Perk / Adam Salamon; Xenex / Morris Miller; Liquibase / Robert Reeves; Smartlens / Michael Royzen; and Live Tinted / Deepica Mutyala.
+The following leads appeared plausible but were not promoted because the current evidence packet did not support all three required claim classes. They should be re-researched from primary sources before any inclusion: Earthly Labs / Amy George; Spredfast / Ken Cho; Perk / Adam Salamon; and Smartlens / Michael Royzen.
 
 ## Interpretation note
 

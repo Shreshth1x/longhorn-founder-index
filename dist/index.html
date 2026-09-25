@@ -83,10 +83,10 @@
 
         <section class="supplement" id="unpriced" aria-labelledby="unpriced-heading">
           <div class="section-heading">
-            <h2 id="unpriced-heading">Verified, not rankable</h2>
-            <p>3 records</p>
+            <h2 id="unpriced-heading">Unpriced or unresolved</h2>
+            <p id="unpriced-count"></p>
           </div>
-          <p class="section-intro">Founder relationships are supported, but no comparable value was public—or the record belongs in a separate faculty-spinoff lane.</p>
+          <p class="section-intro">These records either have no comparable public value, belong in a separate faculty-spinoff lane, or still lack one part of the evidence test. The note on each record says exactly what is and is not supported.</p>
           <div id="unpriced-list" class="compact-list"></div>
         </section>
 
@@ -96,6 +96,7 @@
             <p id="audit-count"></p>
           </div>
           <p class="section-intro">Common false positives are retained here so the same Austin-location, UT-affiliation, executive-versus-founder, and name-collision errors do not creep back into the census.</p>
+          <p class="section-intro">September 2026 expansion audit: a supplied 470-row Series A+ lead file (419 unique company labels) was deduplicated and cross-referenced row by row. Nothing was imported on a title string alone; founder status, UT attendance, and the economic event were re-verified independently. The final 86-company sub-$10 million tail alone resolved to 8 value-event records, 48 funding-only records, 12 unpriced or unresolved records, and 18 exclusions.</p>
           <details>
             <summary>Open exclusions and corrections</summary>
             <div id="exclusion-list" class="audit-list"></div>
@@ -109,7 +110,7 @@
         <section class="method" id="method" aria-labelledby="method-heading">
           <h2 id="method-heading">How the ranking works</h2>
           <p>The default order uses the strongest dated public company-value signal available: current market capitalization, announced transaction value, then a last disclosed or clearly derived private valuation. These measures are visibly labeled because they are not economically identical.</p>
-          <p>Bounded ranges are sorted by their midpoint; “greater than” values sort just above the stated floor; exact ties share a rank and are alphabetized. The visible label—not the internal sort key—is the reported economic claim.</p>
+          <p>Bounded ranges are sorted by their midpoint; “greater than” values sort just above the stated floor; exact ties share a rank and are alphabetized. Non-USD claims retain their reported currency; any approximate dollar conversion is labeled and used only as a sort key. The visible label—not the internal sort key—is the reported economic claim.</p>
           <p>A record enters the ranked index only after the founder’s UT relationship, founder role, and value or funding figure are each supported by public evidence. Austin location alone does not count. Funding is never presented as valuation.</p>
           <p>Values change. Public-company figures use the latest trading-day data available during the September 2026 review; private valuations and acquisitions retain their original announcement dates.</p>
           <p>“Every founder” is not a mathematically provable claim: private companies can hide both funding and founder biographies, and no authoritative university-wide founder registry exists. This site is therefore a reproducible, public-source census. It favors false-negative omissions over weakly sourced inclusion.</p>
